@@ -1,0 +1,19 @@
+FROM tensorflow/tensorflow:1.9.0
+EXPOSE 5000
+
+ADD . ./app
+
+WORKDIR /app
+
+#Copy all files
+COPY . /app
+
+# install libraries
+RUN pip install flask
+RUN pip install pillow
+RUN pip install scipy
+RUN pip install keras
+RUN pip install requests
+
+COPY styleWebService.py /app
+CMD python styleWebService.py
